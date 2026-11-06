@@ -59,7 +59,7 @@ jobs:
           AMAZON_CREDENTIAL_ID: ${{ secrets.AMAZON_CREDENTIAL_ID }}
           AMAZON_CREDENTIAL_SECRET: ${{ secrets.AMAZON_CREDENTIAL_SECRET }}
           AMAZON_CREDENTIAL_VERSION: ${{ vars.AMAZON_CREDENTIAL_VERSION || '3.2' }}
-          AMAZON_PARTNER_TAG: ${{ vars.AMAZON_PARTNER_TAG }}
+          AMAZON_PARTNER_TAG: ${{ vars.AMAZON_PARTNER_TAG || 'ahmedsayed0e-21' }}   # public tag, safe to keep in code
           # Keep sample products until real stores are connected. Set the variable LAQTA_DEMO to 0 to stop.
           LAQTA_DEMO: ${{ vars.LAQTA_DEMO || '1' }}
         run: |

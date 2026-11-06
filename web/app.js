@@ -75,6 +75,7 @@
       <button type="submit">ابحث</button></form>`;
   const footer = () => `<footer class="foot">
       <span>لقطة تقارن الأسعار بين المتاجر. عند الشراء عبر روابطنا قد نحصل على عمولة من المتجر ونرجع جزءاً منها لك ككاش باك. السعر النهائي هو المعروض في المتجر.</span>
+      <span>بصفتنا شريكاً في برنامج أمازون، نكسب من عمليات الشراء المؤهلة. As an Amazon Associate I earn from qualifying purchases.</span>
       <span>آخر تحديث: ${esc(new Date(DATA.generated_at).toLocaleString('ar-SA', { dateStyle: 'medium', timeStyle: 'short' }))}</span></footer>`;
 
   // ---------- screens ----------
