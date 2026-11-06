@@ -88,3 +88,5 @@ jobs:
       - name: Publish the app
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 1800000   # GitHub Pages is sometimes slow; wait up to 30 minutes
