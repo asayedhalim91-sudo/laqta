@@ -60,6 +60,8 @@ CREATE TABLE IF NOT EXISTS runs (
 class DB:
     def __init__(self, path: str):
         self.path = path
+        from pathlib import Path
+        Path(path).parent.mkdir(parents=True, exist_ok=True)  # e.g. data/ on a fresh checkout
         self.conn = sqlite3.connect(path, check_same_thread=False)
         self.conn.row_factory = sqlite3.Row
         self.conn.execute("PRAGMA journal_mode=WAL")
