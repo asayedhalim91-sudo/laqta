@@ -45,6 +45,8 @@
   const byPid = h => DATA.products.find(p => pid(p.id) === h);
   const S = { q: '', sel: {} };                       // state that is not in the address
   const FRAMED = (() => { try { return window.self !== window.top; } catch { return true; } })();
+  // The early-access form saves through Netlify Forms, so it only shows on a Netlify address.
+  const FORMS = !FRAMED && /\.netlify\.app$/.test(location.hostname);
   const pid = id => 'p-' + String(id).replace(/^g_/, '').replace(/[^A-Za-z0-9-]/g, '-');
   const tHash = (cat, store) => '#trending' + (cat || store ? `--${cat || 'all'}` : '') + (store ? `--${store}` : '');
   function setTitle(t) { document.title = t ? `${t} — لقطة` : 'لقطة — كل المتاجر في مكان واحد'; }
@@ -203,7 +205,7 @@
       </ol>
       <section class="banner ivory" aria-labelledby="wl"><span class="tag"><i></i>انضم لأول المستخدمين</span>
         <h2 id="wl">سجّل رقمك ونبلغك أول ما تتفعّل المحفظة</h2>
-        ${FRAMED ? '<p style="margin:0;color:#3B3842">التسجيل يفتح مع إطلاق التطبيق على رابطه الرسمي.</p>' : `<form class="form" data-waitlist>
+        ${!FORMS ? '<p style="margin:0;color:#3B3842">التسجيل يفتح قريباً مع إطلاق المحفظة.</p>' : `<form class="form" data-waitlist>
           <label>رقم الجوال<input name="phone" type="tel" inputmode="tel" required pattern="^(\\+?966|0)?5[0-9]{8}$" placeholder="05xxxxxxxx" autocomplete="tel"></label>
           <input name="company" tabindex="-1" autocomplete="off" hidden>
           <button class="btn btn-dark" type="submit">سجّلني</button>
@@ -286,5 +288,5 @@
     })
     .catch(() => { main.innerHTML = '<p class="empty">ما قدرنا نحمّل المنتجات. تأكد من الاتصال وحدّث الصفحة.</p>'; });
 
-  if (!FRAMED && 'serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('/sw.js').catch(() => {});
+  if (!FRAMED && 'serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
 })();

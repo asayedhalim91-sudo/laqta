@@ -1,5 +1,5 @@
-# Every 3 hours: collect products from the stores, rebuild the app's product file, and save it.
-# Netlify is linked to this repository, so each save publishes the new data to the live app.
+# Every 3 hours: collect products from the stores, rebuild the app's product file, save it,
+# and publish the app (web/) to GitHub Pages: https://asayedhalim91-sudo.github.io/laqta/
 name: Update products
 
 on:
@@ -10,10 +10,13 @@ on:
     branches: [main]
     paths:
       - "collector/**"
+      - "web/**"
       - ".github/workflows/update-products.yml"
 
 permissions:
-  contents: write
+  contents: write   # save the updated product data
+  pages: write      # publish to GitHub Pages
+  id-token: write   # required by the Pages publisher
 
 concurrency:
   group: update-products
@@ -23,6 +26,9 @@ jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -64,7 +70,7 @@ jobs:
           python -m laqta collect $FLAGS
           python -m laqta export --out ../web/data/products.json
 
-      - name: Save the update (Netlify publishes it)
+      - name: Save the update
         run: |
           rm -f collector/feeds/sources.json
           git config user.name "laqta-bot"
@@ -73,3 +79,12 @@ jobs:
           if git diff --cached --quiet; then echo "No changes"; exit 0; fi
           git commit -m "Update products $(date -u +'%Y-%m-%d %H:%M') UTC"
           git push
+
+      # One-time setup: repository Settings -> Pages -> Source: "GitHub Actions"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+      - name: Publish the app
+        id: deployment
+        uses: actions/deploy-pages@v4

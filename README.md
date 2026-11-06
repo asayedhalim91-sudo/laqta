@@ -8,7 +8,7 @@ collector/   pulls products from the stores, ranks them, writes the app's produc
 web/         the live app (works on phones and desktop, installable to the home screen)
 data/        the product database, kept between runs (price history, trends)
 .github/     the robot that updates everything every 3 hours
-netlify.toml tells Netlify to publish web/
+netlify.toml settings if you ever host on Netlify instead
 ```
 
 ## How it runs by itself
@@ -18,18 +18,18 @@ every 3 hours (GitHub Actions)
   → collect products from every connected store
   → rank trending + match the same product across stores
   → write web/data/products.json and save it to this repository
-  → Netlify sees the change and publishes the app (about 30 seconds)
+  → publish web/ to GitHub Pages: https://asayedhalim91-sudo.github.io/laqta/
 ```
 
-Nothing runs on your computer. GitHub Actions and Netlify are free at this size.
+Nothing runs on your computer. GitHub Actions and GitHub Pages are free for public repositories.
 
 ## One-time setup
 
 1. **GitHub:** create a new repository (private is fine) and upload this whole folder,
    including the hidden `.github` folder.
-2. **Netlify:** open the project **laqta-sa** → *Project configuration* → *Build & deploy* →
-   *Link repository* → choose this repository. Leave build settings empty; `netlify.toml` sets them.
+2. **GitHub Pages:** *Settings* → *Pages* → *Build and deployment* → *Source*: **GitHub Actions**.
 3. **First update:** in GitHub open *Actions* → *Update products* → *Run workflow*.
+4. **Your own domain (optional):** *Settings* → *Pages* → *Custom domain*, e.g. `laqta.sa`.
 
 ## Connect the real stores (when your affiliate accounts are approved)
 
