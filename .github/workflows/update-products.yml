@@ -1,0 +1,70 @@
+# Every 3 hours: collect products from the stores, rebuild the app's product file, and save it.
+# Netlify is linked to this repository, so each save publishes the new data to the live app.
+name: Update products
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"   # every 3 hours (UTC), at minute 17 to avoid the busy top of the hour
+  workflow_dispatch: {}      # "Run workflow" button for a manual update
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-products
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: collector/requirements.txt
+
+      - name: Install
+        run: pip install -r collector/requirements.txt
+
+      - name: Feed links (from the LAQTA_FEED_SOURCES secret)
+        env:
+          FEED_SOURCES: ${{ secrets.LAQTA_FEED_SOURCES }}
+        run: |
+          if [ -n "$FEED_SOURCES" ]; then printf '%s' "$FEED_SOURCES" > collector/feeds/sources.json; fi
+
+      - name: Collect products
+        working-directory: collector
+        env:
+          LAQTA_DB: ../data/laqta.db
+          LAQTA_KEYWORDS: ${{ vars.LAQTA_KEYWORDS }}
+          LAQTA_CASHBACK_SHARE: ${{ vars.LAQTA_CASHBACK_SHARE || '0.5' }}
+          ALIEXPRESS_APP_KEY: ${{ secrets.ALIEXPRESS_APP_KEY }}
+          ALIEXPRESS_APP_SECRET: ${{ secrets.ALIEXPRESS_APP_SECRET }}
+          ALIEXPRESS_TRACKING_ID: ${{ secrets.ALIEXPRESS_TRACKING_ID }}
+          AMAZON_CREDENTIAL_ID: ${{ secrets.AMAZON_CREDENTIAL_ID }}
+          AMAZON_CREDENTIAL_SECRET: ${{ secrets.AMAZON_CREDENTIAL_SECRET }}
+          AMAZON_CREDENTIAL_VERSION: ${{ vars.AMAZON_CREDENTIAL_VERSION || '3.2' }}
+          AMAZON_PARTNER_TAG: ${{ vars.AMAZON_PARTNER_TAG }}
+          # Keep sample products until real stores are connected. Set the variable LAQTA_DEMO to 0 to stop.
+          LAQTA_DEMO: ${{ vars.LAQTA_DEMO || '1' }}
+        run: |
+          # an empty variable must not override the default keyword list
+          [ -z "$LAQTA_KEYWORDS" ] && unset LAQTA_KEYWORDS
+          FLAGS="--download"
+          if [ "$LAQTA_DEMO" = "0" ]; then FLAGS="$FLAGS --no-demo"; fi
+          python -m laqta collect $FLAGS
+          python -m laqta export --out ../web/data/products.json
+
+      - name: Save the update (Netlify publishes it)
+        run: |
+          rm -f collector/feeds/sources.json
+          git config user.name "laqta-bot"
+          git config user.email "laqta-bot@users.noreply.github.com"
+          git add data/laqta.db web/data/products.json
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Update products $(date -u +'%Y-%m-%d %H:%M') UTC"
+          git push

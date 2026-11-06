@@ -1,0 +1,25 @@
+# The live app is the web/ folder. No build step: the product file is already made by the update workflow.
+[build]
+  publish = "web"
+  command = ""
+
+# Only redeploy when the app or its product data changed (not for collector-only edits).
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- web/ netlify.toml"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "DENY"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"

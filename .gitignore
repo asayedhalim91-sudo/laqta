@@ -1,0 +1,7 @@
+.netlify
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+collector/feeds/sources.json
+collector/laqta.db*
