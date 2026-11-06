@@ -29,7 +29,8 @@ log = logging.getLogger(__name__)
 # field -> accepted column names (lower-case), first match wins
 ALIASES = {
     "id": ["id", "product_id", "sku", "offer_id", "aw_product_id", "item_id", "productid"],
-    "title": ["title", "name", "product_name", "title_ar", "name_ar", "product_title"],
+    "title": ["title_ar", "name_ar", "title", "name", "product_name", "product_title"],
+    "title_en": ["title_en", "name_en", "title_english", "english_title"],
     "price": ["sale_price", "price", "search_price", "current_price", "final_price", "discounted_price"],
     "old_price": ["oldprice", "old_price", "original_price", "rrp_price", "regular_price", "list_price", "price_before"],
     "currency": ["currency", "currencyid", "currency_id"],
@@ -111,6 +112,7 @@ def row_to_product(row: dict, store: str, usd_to_sar: float = 3.75) -> Product |
         store=store,
         external_id=str(ext_id),
         title=str(title),
+        title_en=_pick(row, "title_en"),
         price=to_sar(price, cur, usd_to_sar),
         old_price=to_sar(old, cur, usd_to_sar),
         url=str(url),

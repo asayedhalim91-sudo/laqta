@@ -71,6 +71,7 @@ def build(db: DB, settings: Settings) -> dict:
         items.append({
             "id": gid,
             "title": top["title"],
+            "title_en": next((m["title_en"] for m in members if m["title_en"]), None),
             "category": top["category"],
             "image": next((m["image"] for m in members if m["image"]), None),
             "brand": top["brand"],

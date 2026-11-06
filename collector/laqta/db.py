@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS products (
     store TEXT NOT NULL,
     external_id TEXT NOT NULL,
     title TEXT NOT NULL,
+    title_en TEXT,
     price REAL NOT NULL,
     old_price REAL,
     currency TEXT NOT NULL DEFAULT 'SAR',
@@ -66,6 +67,11 @@ class DB:
         self.conn.row_factory = sqlite3.Row
         self.conn.execute("PRAGMA journal_mode=WAL")
         self.conn.executescript(SCHEMA)
+        # upgrade databases made before a column existed
+        cols = {r[1] for r in self.conn.execute("PRAGMA table_info(products)")}
+        if "title_en" not in cols:
+            self.conn.execute("ALTER TABLE products ADD COLUMN title_en TEXT")
+            self.conn.commit()
 
     @contextmanager
     def tx(self) -> Iterator[sqlite3.Connection]:
@@ -89,19 +95,19 @@ class DB:
                     days = max(_days_between(prev["last_seen"], at), 1 / 24)  # at least one hour
                     velocity = max(p.sales - prev["sales"], 0) / days
                 c.execute("""
-                    INSERT INTO products (uid, store, external_id, title, price, old_price, currency, url, image,
+                    INSERT INTO products (uid, store, external_id, title, title_en, price, old_price, currency, url, image,
                         category, brand, rating, reviews, sales, sales_rank, is_hot, commission_rate, shipping,
                         sales_velocity, first_seen, last_seen, active)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1)
                     ON CONFLICT(uid) DO UPDATE SET
-                        title=excluded.title, price=excluded.price, old_price=excluded.old_price,
+                        title=excluded.title, title_en=COALESCE(excluded.title_en, products.title_en), price=excluded.price, old_price=excluded.old_price,
                         url=excluded.url, image=COALESCE(excluded.image, products.image),
                         category=excluded.category, brand=COALESCE(excluded.brand, products.brand),
                         rating=excluded.rating, reviews=excluded.reviews, sales=excluded.sales,
                         sales_rank=excluded.sales_rank, is_hot=excluded.is_hot,
                         commission_rate=excluded.commission_rate, shipping=excluded.shipping,
                         sales_velocity=excluded.sales_velocity, last_seen=excluded.last_seen, active=1
-                """, (p.uid, p.store, p.external_id, p.title, p.price, p.old_price, p.currency, p.url, p.image,
+                """, (p.uid, p.store, p.external_id, p.title, p.title_en, p.price, p.old_price, p.currency, p.url, p.image,
                       p.category, p.brand, p.rating, p.reviews, p.sales, p.sales_rank, int(p.is_hot),
                       p.commission_rate, p.shipping, velocity, at, at))
                 c.execute("INSERT OR REPLACE INTO price_history (uid, at, price, sales) VALUES (?,?,?,?)",

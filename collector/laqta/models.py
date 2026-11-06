@@ -37,6 +37,7 @@ class Product:
     price: float                    # current price in SAR
     url: str                        # affiliate link (this is how you get paid)
     currency: str = "SAR"
+    title_en: Optional[str] = None   # English name when the store gives one
     old_price: Optional[float] = None
     image: Optional[str] = None
     category: str = "other"

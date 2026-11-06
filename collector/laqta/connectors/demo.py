@@ -12,7 +12,7 @@ from typing import Iterable
 from ..models import Product
 from .base import Connector
 
-# (key, title, category, base price SAR, stores that sell it)
+# (key, Arabic title, category, base price SAR, stores that sell it)
 CATALOG = [
     ("anc-headphones", "سماعات لاسلكية بعزل الضوضاء بلوتوث 5.3", "tech", 189, ["amazon", "noon", "aliexpress", "namshi"]),
     ("amoled-watch", "ساعة ذكية رياضية بشاشة AMOLED لتتبع اللياقة", "tech", 249, ["noon", "amazon", "aliexpress"]),
@@ -27,6 +27,19 @@ CATALOG = [
     ("kids-blocks", "مكعبات بناء مغناطيسية للأطفال 100 قطعة", "kids", 99, ["amazon", "noon", "temu"]),
     ("air-fryer", "قلاية هوائية رقمية 5.5 لتر بدون زيت", "home", 229, ["amazon", "noon"]),
 ]
+
+EN_TITLES = {'سماعات لاسلكية بعزل الضوضاء بلوتوث 5.3': 'Wireless Noise-Cancelling Headphones, Bluetooth 5.3',
+    'ساعة ذكية رياضية بشاشة AMOLED لتتبع اللياقة': 'AMOLED Sports Smart Watch & Fitness Tracker',
+    'عطر عود فاخر 100 مل أو دو بارفان': 'Luxury Oud Eau de Parfum 100 ml',
+    'عباية كريب بقصة واسعة مفتوحة من الأمام': 'Open-Front Loose Crepe Abaya',
+    'فستان صيفي طويل واسع بأكمام طويلة': 'Long-Sleeve Loose Summer Maxi Dress',
+    'أباجورة مكتب LED قابلة للطي وإعادة الشحن': 'Foldable Rechargeable LED Desk Lamp',
+    'سماعات أذن رياضية لاسلكية مقاومة للماء': 'Waterproof Wireless Sport Earbuds',
+    'طقم هدايا بخور ودهن عود': 'Bakhoor & Oud Oil Gift Set',
+    'شاحن سريع 65 واط GaN بثلاث منافذ USB-C': '65W GaN Fast Charger, 3 USB-C Ports',
+    'حقيبة ظهر للابتوب مقاومة للماء 15.6 إنش': 'Waterproof 15.6-inch Laptop Backpack',
+    'مكعبات بناء مغناطيسية للأطفال 100 قطعة': 'Kids Magnetic Building Blocks, 100 Pieces',
+    'قلاية هوائية رقمية 5.5 لتر بدون زيت': 'Digital Oil-Free Air Fryer 5.5 L'}
 
 PRICE_FACTOR = {"amazon": 1.00, "noon": 1.05, "aliexpress": 0.92, "namshi": 1.18, "shein": 1.0, "temu": 0.88}
 COMMISSION = {"amazon": 0.06, "noon": 0.06, "aliexpress": 0.10, "namshi": 0.07, "shein": 0.10, "temu": 0.09}
@@ -49,6 +62,7 @@ class DemoConnector(Connector):
                     store=store,
                     external_id=f"demo-{key}",
                     title=title,
+                    title_en=EN_TITLES.get(title),
                     price=price,
                     old_price=round(price * self.rng.uniform(1.25, 1.6), 0),
                     url=f"https://example.com/{store}/{key}?ref=laqta-demo",
