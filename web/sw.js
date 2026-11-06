@@ -1,5 +1,5 @@
 // Offline support. Paths are relative so the app works at any address (e.g. /laqta/ on GitHub Pages).
-const CACHE = 'laqta-v4';
+const CACHE = 'laqta-v5';
 const SHELL = ['./', 'index.html', 'app.css', 'app.js', 'icon.svg', 'manifest.webmanifest'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener('activate', e => {
