@@ -275,3 +275,25 @@ footer.foot{border-top:1px solid var(--line);padding-top:20px;font-size:12.5px;c
 /* numbers like -47% always read left-to-right, also inside Arabic text */
 .off,.b-off,.live b{direction:ltr;unicode-bidi:isolate}
 [dir=rtl] .off{text-align:right}
+
+/* products without a stored price ("see the price in the store") */
+.price .ask,.pr .ask{display:inline-flex;align-items:center;gap:6px;font-size:16px}
+.price .ask svg{width:16px;height:16px}
+.list .p svg{width:18px;height:18px;color:var(--gold)}
+.off.off-txt{font-size:clamp(26px,5vw,40px);letter-spacing:0;direction:inherit}
+.amz-search{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.foot-links{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;margin-bottom:6px}
+.foot-links a{text-decoration:none;font-weight:600}
+
+/* plain pages: about, privacy, contact */
+.doc{max-width:760px;gap:18px;padding-top:8px}
+.doc h1{font-size:clamp(28px,5vw,40px);font-weight:800}
+.doc-body{display:flex;flex-direction:column;gap:14px}
+.doc h2{font-size:20px;margin-top:10px}
+.foot-links a[aria-current]{color:var(--text)}
+.doc p,.doc ul{margin:0;color:var(--soft)}
+.doc ul{padding-inline-start:22px;display:flex;flex-direction:column;gap:6px}
+.doc .card-box{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.doc .mail{font-family:var(--display);font-size:clamp(17px,3.6vw,22px);direction:ltr;unicode-bidi:isolate;word-break:break-all}
+html[lang=ar] [data-l=en],html[lang=en] [data-l=ar]{display:none}
+

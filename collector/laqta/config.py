@@ -49,6 +49,8 @@ class Settings:
 
     # Product feeds from affiliate networks (Noon, Shein, Namshi, Temu…): folder of CSV/JSON files
     feeds_dir: str = field(default_factory=lambda: _env("LAQTA_FEEDS_DIR", "feeds"))
+    # Hand-picked products shown until a store's API or feed is connected (curated/amazon.json)
+    curated_dir: str = field(default_factory=lambda: _env("LAQTA_CURATED_DIR", "curated"))
 
     @property
     def aliexpress_ready(self) -> bool:
@@ -61,3 +63,7 @@ class Settings:
     @property
     def feeds_path(self) -> Path:
         return Path(self.feeds_dir)
+
+    @property
+    def curated_path(self) -> Path:
+        return Path(self.curated_dir)

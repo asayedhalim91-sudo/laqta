@@ -10,14 +10,14 @@
       sample: 'نسخة تجريبية: المنتجات والأسعار للعرض، وتتحدث تلقائياً بعد ربط المتاجر.',
       tabs: { home: 'الرئيسية', trending: 'رائج', deals: 'عروض', favorites: 'المفضلة' },
       loadErr: 'ما قدرنا نحمّل المنتجات. تأكد من الاتصال وحدّث الصفحة.',
-      searchPh: 'ابحث عن أي منتج في 6 متاجر', searchBtn: 'ابحث', searchLabel: 'ابحث في كل المتاجر',
+      searchPh: 'ابحث عن أي منتج', searchBtn: 'ابحث', searchLabel: 'ابحث في كل المتاجر',
       cashPill: 'الكاش باك', live: 'الأسعار تتحدث تلقائياً · التحديث القادم بعد',
       heroLabel: 'أقوى العروض', slideOf: 'عرض {i} من {n}', slideN: 'العرض {i}', bestAt: 'الأوفر في {s}', compare: 'قارن',
-      stores: 'المتاجر', picks: 'مختارات لك', seeAll: 'عرض الكل', bestNow: 'الأكثر مبيعاً الآن', fullRank: 'الترتيب الكامل',
+      stores: 'المتاجر', picks: 'مختارات لك', seeAll: 'عرض الكل', bestNow: 'رائج الآن', fullRank: 'الترتيب الكامل',
       byCat: 'تسوّق حسب الفئة', nProducts: '{n} منتج', cashBadge: 'كاش باك {v}', drop: '↓ نزل {v}',
       cheapestAt: 'أرخص في {s}', nStores: '{n} متاجر', favAdd: 'إضافة إلى المفضلة: {t}', favRemove: 'إزالة من المفضلة: {t}',
       toastAdd: 'انضاف للمفضلة ♥', toastRemove: 'انشال من المفضلة', copied: 'تم نسخ الرابط',
-      trendingTitle: 'الأكثر <span class="gold">مبيعاً</span> في السعودية', all: 'الكل', cats: 'الفئات',
+      trendingTitle: 'الأكثر <span class="gold">طلباً</span> في السعودية', all: 'الكل', cats: 'الفئات',
       store: 'المتجر', allStores: 'كل المتاجر', emptyList: 'ما فيه منتجات هنا حالياً.',
       dealsTag: 'تخفيضات حقيقية', dealsTitle: 'أقوى العروض الآن', dealsSub: 'مرتبة حسب نسبة الخصم، والأسعار تتحدث كل كم ساعة.',
       results: '{n} نتيجة لـ «{q}»', noResults: 'ما لقينا نتائج لـ «{q}». جرّب كلمة ثانية.', popular: 'الأكثر بحثاً', searchT: 'بحث',
@@ -37,6 +37,10 @@
       browse: 'تصفّح الأكثر مبيعاً', disclosure: 'لقطة تقارن الأسعار بين المتاجر. عند الشراء عبر روابطنا قد نحصل على عمولة من المتجر ونرجع جزءاً منها لك ككاش باك. السعر النهائي هو المعروض في المتجر.',
       amazon: 'بصفتنا شريكاً في برنامج أمازون، نكسب من عمليات الشراء المؤهلة. As an Amazon Associate I earn from qualifying purchases.',
       updated: 'آخر تحديث: {d}', days: v => v,
+      seePrice: 'شوف السعر', atStore: 'في {s}', seePriceAt: 'شوف السعر في {s}', liveNote: 'يفتح لك {s} بأحدث سعر وعروض اليوم، وتكمل الشراء هناك.',
+      topPicks: 'الأكثر طلباً', todayDeals: 'عروض اليوم في أمازون', dealsLive: 'تخفيضات أمازون السعودية تتغير كل ساعة — افتح صفحة العروض وشوف الجديد.',
+      searchAmazon: 'ابحث عن «{q}» في أمازون', searchAmazonNote: 'ما لقيته عندنا؟ نفتح لك نتائج البحث في أمازون السعودية.',
+      about: 'من نحن', privacy: 'الخصوصية', contact: 'اتصل بنا',
     },
     en: {
       dir: 'ltr', locale: 'en-GB', cur: 'SAR', toggle: 'ع', toggleLabel: 'التبديل إلى العربية',
@@ -44,14 +48,14 @@
       sample: 'Preview: products and prices are samples and update automatically once stores are connected.',
       tabs: { home: 'Home', trending: 'Trending', deals: 'Deals', favorites: 'Saved' },
       loadErr: 'We couldn’t load the products. Check your connection and refresh.',
-      searchPh: 'Search 6 stores…', searchBtn: 'Search', searchLabel: 'Search every store',
+      searchPh: 'Search any product…', searchBtn: 'Search', searchLabel: 'Search every store',
       cashPill: 'Cashback', live: 'Prices update automatically · next update in',
       heroLabel: 'Top deals', slideOf: 'Deal {i} of {n}', slideN: 'Deal {i}', bestAt: 'Best price at {s}', compare: 'Compare',
-      stores: 'Stores', picks: 'Picked for you', seeAll: 'See all', bestNow: 'Best sellers now', fullRank: 'Full ranking',
+      stores: 'Stores', picks: 'Picked for you', seeAll: 'See all', bestNow: 'Trending now', fullRank: 'Full ranking',
       byCat: 'Shop by category', nProducts: '{n} products', cashBadge: '{v} cashback', drop: '↓ {v} off',
       cheapestAt: 'Cheapest at {s}', nStores: '{n} stores', favAdd: 'Save: {t}', favRemove: 'Remove from saved: {t}',
       toastAdd: 'Saved ♥', toastRemove: 'Removed from saved', copied: 'Link copied',
-      trendingTitle: 'Best <span class="gold">sellers</span> in Saudi Arabia', all: 'All', cats: 'Categories',
+      trendingTitle: 'Most <span class="gold">wanted</span> in Saudi Arabia', all: 'All', cats: 'Categories',
       store: 'Store', allStores: 'All stores', emptyList: 'No products here yet.',
       dealsTag: 'Real discounts', dealsTitle: 'Top deals right now', dealsSub: 'Sorted by discount size. Prices refresh every few hours.',
       results: '{n} results for “{q}”', noResults: 'No results for “{q}”. Try another word.', popular: 'Popular', searchT: 'Search',
@@ -71,6 +75,10 @@
       browse: 'Browse best sellers', disclosure: 'Laqta compares prices between stores. When you buy through our links we may earn a commission from the store and share part of it with you as cashback. The final price is the one shown by the store.',
       amazon: 'As an Amazon Associate I earn from qualifying purchases.',
       updated: 'Last updated: {d}', days: v => String(v || '').replace(/أيام|يوم/g, 'days'),
+      seePrice: 'See price', atStore: 'at {s}', seePriceAt: 'See price at {s}', liveNote: 'Opens {s} with today’s price and offers. You complete the purchase there.',
+      topPicks: 'Most wanted', todayDeals: 'Today’s deals on Amazon', dealsLive: 'Amazon.sa discounts change every hour — open the deals page to see what’s new.',
+      searchAmazon: 'Search Amazon for “{q}”', searchAmazonNote: 'Not listed here? We’ll open the results on Amazon.sa.',
+      about: 'About', privacy: 'Privacy', contact: 'Contact',
     },
   };
   const STORE_EN = { amazon: 'Amazon', noon: 'noon', shein: 'SHEIN', aliexpress: 'AliExpress', namshi: 'Namshi', temu: 'Temu' };
@@ -134,6 +142,12 @@
   const thumb = p => p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy">` : `<span class="duo">${svg(iconFor(p))}</span>`;
   const tstyle = cat => { const [bg, ac] = THEME[cat] || THEME.other; return `--tbg:${bg};--tac:${ac}`; };
   const dropOf = p => { const o = p.offers[0]; return o && o.history.length > 1 ? Math.round(o.history[0].price - o.price) : 0; };
+  const priced = p => p.price != null;
+  // Amazon links with our Associates tag (set by the collector) — this is what earns the commission.
+  const amz = path => { const a = DATA.amazon || {}; return a.site ? a.site + path + (a.tag ? (path.includes('?') ? '&' : '?') + 'tag=' + encodeURIComponent(a.tag) : '') : ''; };
+  // One product from each category in turn, so the home screen isn't a wall of electronics.
+  const mixed = list => { const by = {}; list.forEach(p => (by[p.category] = by[p.category] || []).push(p));
+    const cols = Object.values(by), out = []; for (let i = 0; out.length < list.length; i++) cols.forEach(c => c[i] && out.push(c[i])); return out; };
   const pid = id => 'p-' + String(id).replace(/^g_/, '').replace(/[^A-Za-z0-9-]/g, '-');
   const byPid = h => DATA.products.find(p => pid(p.id) === h);
   const tHash = (cat, store) => '#trending' + (cat || store ? `--${cat || 'all'}` : '') + (store ? `--${store}` : '');
@@ -156,8 +170,8 @@
           ${pct(p) >= 10 ? `<span class="badge b-off">-${pct(p)}%</span>` : `<span class="badge b-rank">#${p.rank}</span>`}
           ${drop > 0 ? `<span class="badge b-drop">${t('drop', { v: sar(drop) })}</span>` : ''}</div>
         <span class="t">${esc(titleOf(p))}</span>
-        <div class="price"><b>${sar(p.price)}</b>${p.old_price ? `<s>${fmt(p.old_price)}</s>` : ''}</div>
-        <div class="meta"><span class="sdot" style="--sc:${STORE_COLOR[p.best_store] || '#fff'}"></span>${esc(t('cheapestAt', { s: storeName(p.best_store) }))}
+        <div class="price">${priced(p) ? `<b>${sar(p.price)}</b>${p.old_price ? `<s>${fmt(p.old_price)}</s>` : ''}` : `<b class="ask">${t('seePrice')} ${svg(I.arrow, '', 'flip')}</b>`}</div>
+        <div class="meta"><span class="sdot" style="--sc:${STORE_COLOR[p.best_store] || '#fff'}"></span>${esc(t(priced(p) ? 'cheapestAt' : 'atStore', { s: storeName(p.best_store) }))}
           ${p.offers.length > 1 ? `<span class="muted">· ${t('nStores', { n: p.offers.length })}</span>` : ''}</div>
       </a>
       <button class="fav" type="button" data-fav="${esc(p.id)}" aria-pressed="${on}" aria-label="${esc(t(on ? 'favRemove' : 'favAdd', { t: titleOf(p) }))}">${svg(I.heart)}</button>
@@ -166,7 +180,7 @@
   const row = (p, n) => `<li><a href="#${pid(p.id)}"><span class="n">${n}</span>
       <span class="ic" style="${tstyle(p.category)}">${svg(iconFor(p))}</span>
       <span class="m"><span>${esc(titleOf(p))}</span><span>${esc(storesLine(p))}</span></span>
-      <span class="p">${sar(p.price)}</span></a></li>`;
+      <span class="p">${priced(p) ? sar(p.price) : svg(I.arrow, '', 'flip')}</span></a></li>`;
   const langBtn = () => `<button class="lang" type="button" data-lang aria-label="${esc(t('toggleLabel'))}" lang="${lang === 'ar' ? 'en' : 'ar'}">${t('toggle')}</button>`;
   const header = (right = '') => `<header class="top">
       <a class="logo" href="#home" aria-label="${esc(t('brand'))}"><span class="mark" aria-hidden="true"><i></i></span><b>${t('brand')}</b></a>
@@ -175,34 +189,37 @@
   const searchBox = (q = '') => `<form class="search" role="search" data-search>
       ${svg(I.search)}<input name="q" value="${esc(q)}" aria-label="${esc(t('searchLabel'))}" placeholder="${esc(t('searchPh'))}" autocomplete="off">
       <button type="submit">${t('searchBtn')}</button></form>`;
-  const footer = () => `<footer class="foot"><span>${t('disclosure')}</span><span>${t('amazon')}</span>
+  const footer = () => `<footer class="foot"><nav class="foot-links" aria-label="${esc(t('about'))}"><a href="about.html">${t('about')}</a><a href="privacy.html">${t('privacy')}</a><a href="contact.html">${t('contact')}</a></nav>
+      <span>${t('disclosure')}</span><span>${t('amazon')}</span>
       <span>${esc(t('updated', { d: new Date(DATA.generated_at).toLocaleString(T().locale, { dateStyle: 'medium', timeStyle: 'short' }) }))}</span></footer>`;
 
   // ---------- screens ----------
   function home() {
     setTitle('');
     const P = DATA.products;
-    const top = [...P].sort((a, b) => discount(b) - discount(a)).slice(0, 5);
+    const deals = P.filter(p => discount(p) > 0).sort((a, b) => discount(b) - discount(a));
+    const picks = DATA.priced ? P : mixed(P);
+    const top = (deals.length ? deals : picks).slice(0, 5);
     return `${header(walletPill())}
       ${searchBox()}
-      <div class="live"><span class="pulse" aria-hidden="true"></span><span>${t('live')} <b data-countdown>${hms(nextUpdate() - Date.now())}</b></span></div>
+      ${DATA.priced ? `<div class="live"><span class="pulse" aria-hidden="true"></span><span>${t('live')} <b data-countdown>${hms(nextUpdate() - Date.now())}</b></span></div>` : ''}
       <section class="hero" aria-roledescription="carousel" aria-label="${esc(t('heroLabel'))}">
         <div class="slides" data-carousel>${top.map((p, i) => `
           <a class="slide" href="#${pid(p.id)}" style="${tstyle(p.category)}" aria-label="${esc(t('slideOf', { i: i + 1, n: top.length }))}: ${esc(titleOf(p))}">
-            <span class="off">-${pct(p)}%</span>
+            <span class="off${pct(p) ? '' : ' off-txt'}">${pct(p) ? `-${pct(p)}%` : esc(catName(p.category))}</span>
             <span class="slide-ic" aria-hidden="true">${svg(iconFor(p))}</span>
-            <span class="slide-txt"><small>${esc(t('bestAt', { s: storeName(p.best_store) }))}</small><b>${esc(titleOf(p))}</b>
-              <span class="sp"><b>${sar(p.price)}</b>${p.old_price ? `<s>${fmt(p.old_price)}</s>` : ''}</span></span>
-            <span class="go" aria-hidden="true">${t('compare')} ${svg(I.arrow, '', 'flip')}</span>
+            <span class="slide-txt"><small>${esc(t(priced(p) ? 'bestAt' : 'atStore', { s: storeName(p.best_store) }))}</small><b>${esc(titleOf(p))}</b>
+              ${priced(p) ? `<span class="sp"><b>${sar(p.price)}</b>${p.old_price ? `<s>${fmt(p.old_price)}</s>` : ''}</span>` : ''}</span>
+            <span class="go" aria-hidden="true">${t(priced(p) ? 'compare' : 'seePrice')} ${svg(I.arrow, '', 'flip')}</span>
           </a>`).join('')}</div>
         <div class="dots">${top.map((p, i) => `<button type="button" data-dot="${i}" aria-label="${esc(t('slideN', { i: i + 1 }))}" aria-current="${i === 0}"></button>`).join('')}</div>
       </section>
-      <div class="row-scroll stores" aria-label="${esc(t('stores'))}">${DATA.stores.map(s =>
+      <div class="row-scroll stores" aria-label="${esc(t('stores'))}">${DATA.stores.filter(s => P.some(p => p.offers.some(o => o.store === s.id))).map(s =>
         `<a class="store-dot" href="${tHash('', s.id)}" style="--sc:${STORE_COLOR[s.id] || '#fff'}"><b>${STORE_MONO[s.id] || '?'}</b><span>${esc(storeName(s.id))}</span></a>`).join('')}</div>
       <div class="head"><h2>${t('picks')}</h2><a href="#trending">${t('seeAll')}</a></div>
-      <div class="cards scroll">${P.slice(0, 8).map(card).join('')}</div>
+      <div class="cards scroll">${picks.slice(0, 8).map(card).join('')}</div>
       <div class="head"><h2>${t('bestNow')}</h2><a href="#trending">${t('fullRank')}</a></div>
-      <ol class="list">${P.slice(0, 5).map((p, i) => row(p, i + 1)).join('')}</ol>
+      <ol class="list">${picks.slice(DATA.priced ? 0 : 8, DATA.priced ? 5 : 13).map((p, i) => row(p, i + 1)).join('')}</ol>
       <div class="head"><h2>${t('byCat')}</h2></div>
       <div class="cats">${DATA.categories.filter(c => P.some(p => p.category === c.id)).map(c =>
         `<a class="cat" href="${tHash(c.id, '')}" style="${tstyle(c.id)}"><span class="duo">${svg(ICONS[c.id] || ICONS.other)}</span><b>${esc(catName(c.id))}</b>
@@ -233,8 +250,10 @@
     const list = DATA.products.filter(p => discount(p) >= 0.15).sort((a, b) => discount(b) - discount(a));
     return `${header(walletPill())}
       <section class="banner"><span class="big" aria-hidden="true">%</span><span class="tag"><i></i>${t('dealsTag')}</span>
-        <h1>${t('dealsTitle')}</h1><p>${t('dealsSub')}</p></section>
-      <div class="cards">${list.map(card).join('')}</div>
+        <h1>${t('dealsTitle')}</h1><p>${t(list.length ? 'dealsSub' : 'dealsLive')}</p>
+        ${amz('/deals') ? `<a class="btn btn-dark" href="${esc(amz('/deals'))}" target="_blank" rel="sponsored noopener">${t('todayDeals')} ${svg(I.out)}</a>` : ''}</section>
+      ${list.length ? '' : `<div class="head"><h2>${t('topPicks')}</h2><a href="#trending">${t('seeAll')}</a></div>`}
+      <div class="cards">${(list.length ? list : mixed(DATA.products).slice(0, 12)).map(card).join('')}</div>
       ${footer()}`;
   }
 
@@ -249,6 +268,8 @@
     }) : [];
     return `${header(walletPill())}${searchBox(q)}
       ${q ? `<p class="muted">${esc(list.length ? t('results', { n: list.length, q }) : t('noResults', { q }))}</p>` : ''}
+      ${q && amz('/s?k=x') ? `<div class="amz-search"><a class="btn btn-gold" href="${esc(amz('/s?k=' + encodeURIComponent(q)))}" target="_blank" rel="sponsored noopener">${esc(t('searchAmazon', { q }))} ${svg(I.out)}</a>
+        <small class="muted">${t('searchAmazonNote')}</small></div>` : ''}
       ${list.length ? `<div class="cards">${list.map(card).join('')}</div>` :
         `<div class="head"><h2>${t('popular')}</h2></div><div class="cards">${DATA.products.slice(0, 4).map(card).join('')}</div>`}
       ${footer()}`;
@@ -276,10 +297,10 @@
           <div class="offers" role="radiogroup" aria-label="${esc(t('chooseStore'))}">${p.offers.map((x, i) => `
             <button class="offer" type="button" role="radio" aria-checked="${i === sel}" data-offer="${esc(x.uid)}">
               <span class="mono" style="--sc:${STORE_COLOR[x.store] || '#fff'}">${STORE_MONO[x.store] || '?'}</span>
-              <span class="m"><b>${esc(storeName(x.store))} ${i === 0 ? `<span class="best">${t('best')}</span>` : ''}</b><span>${esc(T().days(x.shipping))}</span></span>
-              <span class="pr"><b>${sar(x.price)}</b>${x.cashback > 0 ? `<span>${t('plusCash', { v: fmt(x.cashback) })}</span>` : ''}</span>
+              <span class="m"><b>${esc(storeName(x.store))} ${i === 0 && p.offers.length > 1 ? `<span class="best">${t('best')}</span>` : ''}</b><span>${esc(T().days(x.shipping))}</span></span>
+              <span class="pr">${x.price != null ? `<b>${sar(x.price)}</b>` : `<b class="ask">${t('seePrice')}</b>`}${x.cashback > 0 ? `<span>${t('plusCash', { v: fmt(x.cashback) })}</span>` : ''}</span>
             </button>`).join('')}</div>
-          <section class="net" aria-label="${esc(t('realPrice', { s }))}">
+          ${o.price == null ? '' : `<section class="net" aria-label="${esc(t('realPrice', { s }))}">
             <strong>${esc(t('realPrice', { s }))}</strong>
             <span class="v">${lang === 'en' ? '<small>SAR</small> ' : ''}<span data-net="${o.net_price}">${fmt(o.net_price)}</span>${lang === 'ar' ? ' <small>ر.س</small>' : ''}</span>
             <p>${esc(o.cashback > 0 ? t('cashNote', { v: sar(o.cashback) }) : t('noCash'))}</p>
@@ -288,11 +309,11 @@
             <div class="head"><strong>${esc(t('history', { s }))}</strong>${o.price <= lo ? `<span class="pill-gold">${t('lowestNow')}</span>` : ''}</div>
             <div class="bars" aria-hidden="true">${hist.map((x, i) => `<i class="${x.price <= lo ? 'low' : ''}" style="--h:${hi === lo ? 70 : 35 + 65 * (x.price - lo) / (hi - lo)}%;--i:${i}"></i>`).join('')}</div>
             <span class="note">${esc(t('range', { a: sar(lo), b: sar(hi), n: hist.length }))}</span>
-          </section>
+          </section>`}
           <div class="buybar">
             <a class="btn btn-gold shine" href="${esc(o.url)}" target="_blank" rel="sponsored noopener">
-              <span>${esc(t(o.sample ? 'openIn' : 'buyFrom', { s }))}</span><span class="bb-p">${sar(o.price)} ${svg(I.out)}</span></a>
-            <small>${t(o.sample ? 'sampleNote' : 'realNote')}</small>
+              <span>${esc(t(o.price == null ? 'seePriceAt' : o.sample ? 'openIn' : 'buyFrom', { s }))}</span><span class="bb-p">${o.price == null ? '' : sar(o.price)} ${svg(I.out)}</span></a>
+            <small>${o.price == null ? esc(t('liveNote', { s })) : t(o.sample ? 'sampleNote' : 'realNote')}</small>
           </div>
         </div>
       </div>

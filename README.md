@@ -44,7 +44,15 @@ In GitHub: *Settings* → *Secrets and variables* → *Actions*.
 | Secret | `LAQTA_FEED_SOURCES` | Feed links from affiliate networks for Noon, Shein, Namshi, Temu, as JSON: `{"noon": "https://…", "shein": "https://…"}` |
 | Variable | `LAQTA_KEYWORDS` | Optional: comma-separated search words for Amazon/AliExpress |
 | Variable | `LAQTA_CASHBACK_SHARE` | Optional: share of commission returned as cashback (default `0.5`) |
-| Variable | `LAQTA_DEMO` | Set to `0` once real stores are connected, to remove the sample products |
+| Variable | `LAQTA_DEMO` | Sample products are off by default. Set to `1` only to preview the app with fake data |
+
+## Hand-picked products (before a store's API is connected)
+
+`collector/curated/amazon.json` is the list of popular products the app shows today. Each one opens
+Amazon.sa with your Associates tag, so purchases earn commission. No price is shown for them (Amazon only
+allows prices that come from its API). Edit the file to add, remove or reorder products; add `"asin": "B0…"`
+to link straight to one product page instead of a search. The list switches off by itself once the Amazon
+API credentials are added.
 
 ## Work on it locally
 

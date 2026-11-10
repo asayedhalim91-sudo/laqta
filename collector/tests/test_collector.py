@@ -206,3 +206,29 @@ def test_api_end_to_end(settings, monkeypatch):
     assert client.get("/trending", params={"category": "fashion"}).json()["items"][0]["category"] == "fashion"
     assert client.get("/trending", params={"store": "nope"}).status_code == 400
     assert client.get("/health").json()["active_products"] > 20
+
+
+# --- hand-picked products (before the Amazon API is connected) -----------------------------------
+def test_curated_products_link_with_tag_and_show_no_price(settings, tmp_path):
+    from laqta.collector import run
+    from laqta.export import build
+    settings.amazon_partner_tag = "laqta-21"
+    settings.amazon_client_id = settings.amazon_client_secret = ""
+    settings.curated_dir = str(tmp_path / "curated")
+    (tmp_path / "curated").mkdir()
+    (tmp_path / "curated" / "amazon.json").write_text(json.dumps([
+        {"id": "a", "title": "سماعات أبل", "title_en": "Apple AirPods Pro", "query": "Apple AirPods Pro", "category": "tech"},
+        {"id": "b", "title": "عطر", "query": "عطر عود", "category": "beauty", "asin": "B0TEST1234"},
+    ], ensure_ascii=False), encoding="utf-8")
+
+    run(settings, demo=True)                      # sample products present…
+    summary = run(settings, demo=False)           # …and gone the moment demo is switched off
+    assert summary["sources"]["curated"] == 2
+    data = build(DB(settings.db_path), settings)
+    assert data["sample"] is False and data["priced"] is False
+    assert [p["title"] for p in data["products"]] == ["سماعات أبل", "عطر"]   # file order kept
+    a, b = (p["offers"][0] for p in data["products"])
+    assert a["url"] == "https://www.amazon.sa/s?k=Apple+AirPods+Pro&tag=laqta-21"
+    assert b["url"] == "https://www.amazon.sa/dp/B0TEST1234?tag=laqta-21"
+    assert a["price"] is None and a["net_price"] is None and a["cashback"] == 0 and a["history"] == []
+    assert data["products"][0]["price"] is None and data["products"][0]["max_cashback"] == 0

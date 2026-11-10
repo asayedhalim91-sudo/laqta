@@ -35,18 +35,19 @@ def _offer(row: dict, share: float, history: list[dict], amazon_tag: str = "") -
         # even before you qualify for the API.
         if row["store"] == "amazon" and amazon_tag:
             url += f"&tag={quote(amazon_tag)}"
+    priced = row["price"] > 0  # hand-picked products carry no price: the app says "see the price in the store"
     return {
         "uid": row["uid"],
         "store": row["store"],
-        "price": row["price"],
-        "old_price": row["old_price"],
+        "price": row["price"] if priced else None,
+        "old_price": row["old_price"] if priced else None,
         "cashback": cashback,
-        "net_price": round(row["price"] - cashback, 2),
+        "net_price": round(row["price"] - cashback, 2) if priced else None,
         "shipping": row["shipping"],
         "url": url,
         "sample": sample,
         "rating": row["rating"],
-        "history": history,
+        "history": history if priced else [],
     }
 
 
@@ -65,7 +66,7 @@ def build(db: DB, settings: Settings) -> dict:
         top = members[0]  # rows are sorted by trend score, so the first is the strongest
         offers = sorted((_offer(m, settings.cashback_share, hist[m["uid"]][-30:], settings.amazon_partner_tag)
                          for m in members),
-                        key=lambda o: o["net_price"])
+                        key=lambda o: (o["net_price"] is None, o["net_price"] or 0))  # priced offers first, cheapest on top
         best = offers[0]
         olds = [o["old_price"] for o in offers if o["old_price"]]
         items.append({
@@ -91,7 +92,9 @@ def build(db: DB, settings: Settings) -> dict:
         item["rank"] = i
     return {
         "generated_at": now_iso(),
-        "sample": all(o["sample"] for i in items for o in i["offers"]),
+        "sample": bool(items) and all(o["sample"] for i in items for o in i["offers"]),
+        "priced": any(i["price"] is not None for i in items),
+        "amazon": {"site": f"https://{settings.amazon_marketplace}", "tag": settings.amazon_partner_tag},
         "cashback_share": settings.cashback_share,
         "stores": [{"id": k, "name": v} for k, v in STORES.items()],
         "categories": [{"id": k, "name": v} for k, v in CATEGORIES.items()],

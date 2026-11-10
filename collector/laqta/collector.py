@@ -8,6 +8,7 @@ from .config import Settings
 from .connectors.aliexpress import AliExpressConnector
 from .connectors.amazon import AmazonConnector
 from .connectors.base import Connector
+from .connectors.curated import CuratedConnector
 from .connectors.demo import DemoConnector
 from .connectors.feeds import FeedConnector
 from .db import DB
@@ -28,6 +29,7 @@ def build_connectors(s: Settings, demo: bool) -> list[Connector]:
     else:
         log.info("AliExpress: skipped (set ALIEXPRESS_APP_KEY, ALIEXPRESS_APP_SECRET, ALIEXPRESS_TRACKING_ID)")
     out.append(FeedConnector(s))
+    out.append(CuratedConnector(s))
     if demo:
         out.append(DemoConnector())
     return out
@@ -54,6 +56,9 @@ def run(s: Settings | None = None, demo: bool = True, download_feeds: bool = Fal
             db.log_run(conn.name, started, 0, error=f"{e}\n{traceback.format_exc(limit=3)}")
             summary["sources"][conn.name] = f"error: {e}"
             log.error("%s failed: %s", conn.name, e)
+    if not demo:  # sample products must disappear at once, not after the 3-day stale window
+        with db.tx() as c:
+            c.execute("UPDATE products SET active=0 WHERE active=1 AND external_id LIKE 'demo-%'")
     summary["hidden_stale"] = db.deactivate_stale()
     summary["ranked"] = compute_trend_scores(db)
     summary["matched_groups"] = match_groups(db)
